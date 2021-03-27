@@ -23,7 +23,15 @@ public class AutorRequest {
 		this.email = email;
 		this.descricao = descricao;
 	}
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "AutorRequest [nome=" + nome + ", email=" + email + ", descricao=" + descricao + "]";
