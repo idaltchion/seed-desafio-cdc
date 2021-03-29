@@ -2,9 +2,12 @@ package com.idaltchion.cdc.categoria;
 
 import javax.validation.constraints.NotBlank;
 
+import com.idaltchion.cdc.validator.UniqueValue;
+
 public class CategoriaRequest {
 
 	@NotBlank
+	@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
 	private String nome;
 
 	public String getNome() {

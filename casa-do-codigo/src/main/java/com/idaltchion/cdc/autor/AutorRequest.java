@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.idaltchion.cdc.validator.UniqueValue;
+
 public class AutorRequest {
 
 	@NotBlank
@@ -11,6 +13,7 @@ public class AutorRequest {
 
 	@NotBlank
 	@Email
+	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 
 	@NotBlank
