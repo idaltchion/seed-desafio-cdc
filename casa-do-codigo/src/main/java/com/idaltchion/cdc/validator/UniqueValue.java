@@ -23,8 +23,8 @@ public @interface UniqueValue {
 	
 	Class<? extends Payload>[] payload() default { };
 	
-	String fieldName();
+	String field();
 	
-	Class<?> domainClass();
+	Class<?> entity();
 	
 }

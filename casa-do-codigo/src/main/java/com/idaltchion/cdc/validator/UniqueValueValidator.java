@@ -20,8 +20,8 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 
 	@Override
 	public void initialize(UniqueValue params) {
-		this.domainAttribute = params.fieldName();
-		this.domainClass = params.domainClass();
+		this.domainAttribute = params.field();
+		this.domainClass = params.entity();
 	}
 
 	@Override

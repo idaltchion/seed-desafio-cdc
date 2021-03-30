@@ -7,7 +7,7 @@ import com.idaltchion.cdc.validator.UniqueValue;
 public class CategoriaRequest {
 
 	@NotBlank
-	@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
+	@UniqueValue(entity = Categoria.class, field = "nome", message = "{categoria.nome.unique}")
 	private String nome;
 
 	public String getNome() {

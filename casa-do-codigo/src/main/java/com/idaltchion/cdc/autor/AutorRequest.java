@@ -13,7 +13,7 @@ public class AutorRequest {
 
 	@NotBlank
 	@Email
-	@UniqueValue(domainClass = Autor.class, fieldName = "email")
+	@UniqueValue(entity = Autor.class, field = "email", message = "{autor.email.unique}")
 	private String email;
 
 	@NotBlank
