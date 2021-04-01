@@ -40,7 +40,7 @@ public class Livro {
 	@Valid
 	private Autor autor;
 
-	public Livro(String titulo, @NotBlank @Size(max = 500) String resumo, String sumario,
+	public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, String sumario,
 			@NotNull @Min(20) BigDecimal preco, @NotBlank @Min(100) Integer paginas, @NotBlank String isbn,
 			@FutureOrPresent LocalDate dataPublicacao, @NotBlank @Valid Categoria categoria,
 			@NotBlank @Valid Autor autor) {
@@ -60,6 +60,10 @@ public class Livro {
 		return "Livro [id=" + id + ", titulo=" + titulo + ", resumo=" + resumo + ", sumario=" + sumario + ", preco="
 				+ preco + ", paginas=" + paginas + ", isbn=" + isbn + ", dataPublicacao=" + dataPublicacao
 				+ ", categoria=" + categoria + ", autor=" + autor + "]";
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 }
