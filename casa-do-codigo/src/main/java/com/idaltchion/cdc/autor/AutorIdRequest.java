@@ -1,15 +1,19 @@
 package com.idaltchion.cdc.autor;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AutorIdRequest {
 
-	@NotBlank
+	@NotNull
 	private Long id;
 
-	public AutorIdRequest(@NotBlank Long id) {
+	public AutorIdRequest(@NotNull Long id) {
 		super();
 		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 }

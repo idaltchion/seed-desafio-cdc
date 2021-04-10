@@ -25,7 +25,7 @@ public class LivroController {
 	public ResponseEntity<?> criar(@RequestBody @Valid LivroRequest livroRequest) {
 		Livro novoLivro = livroRequest.toModel(manager);
 		manager.persist(novoLivro);
-		return ResponseEntity.created(URI.create("/livros/" + novoLivro.getId())).build();
+		return ResponseEntity.created(URI.create("/livros/" + novoLivro.getId())).body(novoLivro);
 	}
 	
 }
