@@ -35,6 +35,10 @@ public class Livro {
 	@Valid
 	private Autor autor;
 
+	@Deprecated
+	public Livro() {	
+	}
+	
 	private Livro(Builder builder) {
 		this.titulo = builder.titulo;
 		this.resumo = builder.resumo;
@@ -86,7 +90,7 @@ public class Livro {
 	public Autor getAutor() {
 		return autor;
 	}
-
+	
 	public static class Builder {
 		private String titulo;
 		private String resumo;
