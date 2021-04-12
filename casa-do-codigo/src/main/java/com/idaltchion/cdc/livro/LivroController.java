@@ -2,6 +2,7 @@ package com.idaltchion.cdc.livro;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,16 @@ public class LivroController {
 				.stream()
 				.map(livro -> new LivroResponse(livro))
 				.collect(Collectors.toList());
+	}
+	
+	@GetMapping("/{id}/detalhe")
+	public ResponseEntity<LivroDetalheSiteResponse> exibirDetalhe(@PathVariable Long id) {
+		Livro livroEncontrado = manager.find(Livro.class, id);
+		if (Objects.isNull(livroEncontrado)) {
+			return ResponseEntity.notFound().build();
+		}
+		LivroDetalheSiteResponse livroDetalheResponse = new LivroDetalheSiteResponse(livroEncontrado);
+		return ResponseEntity.ok(livroDetalheResponse);
 	}
 	
 }
