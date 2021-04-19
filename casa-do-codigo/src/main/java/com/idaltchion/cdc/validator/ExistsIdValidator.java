@@ -10,31 +10,32 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.util.Assert;
 
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Object> {
+public class ExistsIdValidator implements ConstraintValidator<ExistsId, Object>{
 
-	private String domainAttribute;
 	private Class<?> domainClass;
-
+	private String domainAttribute;
+	
 	@PersistenceContext
-	private EntityManager manager;
-
+	EntityManager manager;
+	
 	@Override
-	public void initialize(UniqueValue params) {
-		this.domainAttribute = params.field();
+	public void initialize(ExistsId params) {
 		this.domainClass = params.entity();
+		this.domainAttribute = params.field();
 	}
-
+	
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
 		Query query = manager
 				.createQuery("SELECT 1 FROM " + domainClass.getName() + " WHERE " + domainAttribute + " = :value");
 		query.setParameter("value", value);
-		List<?> result = query.getResultList();
+		List<?> results = query.getResultList();
 
-		Assert.state(result.size() <= 1, String.format("Foi encontrado mais de um %s com o atributo %s = %s",
-				domainClass.getSimpleName(), domainAttribute, value));
-
-		return result.isEmpty();
+		Assert.state(results.size() <= 1, 
+				String.format("Não foi encontrado cadastro de %s com o %s = %s", 
+						domainClass.getSimpleName(), domainAttribute, value));
+		
+		return !results.isEmpty();
 	}
-
+	
 }

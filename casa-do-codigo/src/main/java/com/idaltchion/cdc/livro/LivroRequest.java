@@ -22,8 +22,6 @@ import com.idaltchion.cdc.categoria.Categoria;
 import com.idaltchion.cdc.categoria.CategoriaIdRequest;
 import com.idaltchion.cdc.validator.UniqueValue;
 
-import net.bytebuddy.asm.Advice.This;
-
 public class LivroRequest {
 
 	@NotBlank
