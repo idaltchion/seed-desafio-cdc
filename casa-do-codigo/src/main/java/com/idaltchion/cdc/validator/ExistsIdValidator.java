@@ -1,6 +1,7 @@
 package com.idaltchion.cdc.validator;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,10 @@ public class ExistsIdValidator implements ConstraintValidator<ExistsId, Object>{
 	
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
+		if (Objects.isNull(value)) {
+			return true;
+		}
+			
 		Query query = manager
 				.createQuery("SELECT 1 FROM " + domainClass.getName() + " WHERE " + domainAttribute + " = :value");
 		query.setParameter("value", value);
